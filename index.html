@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VetCare – Ветеринарная клиника</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo" aria-label="На главную">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <rect width="36" height="36" rx="8" fill="#86B7A1" />
+          <path d="M8 20 L18 8 L28 20" stroke="#EFF2F5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="18" cy="13" r="3" fill="#EFF2F5" />
+        </svg>
+        <span class="logo__text">VetCare</span>
+      </a>
+      <nav class="header__nav">
+        <ul class="header__nav-list">
+          <li><a href="index.html" class="header__nav-link">Главная</a></li>
+          <li><a href="index.html#doctors-section" class="header__nav-link">Врачи</a></li>
+          <li><a href="index.html#about" class="header__nav-link">О нас</a></li>
+          <li><a href="#footer" class="header__nav-link">Контакты</a></li>
+        </ul>
+      </nav>
+      <div class="header__actions" id="headerActions"></div>
+      <button class="burger" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <div class="mobile-overlay"></div>
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="index.html" class="mobile-menu__link">Главная</a>
+    <a href="index.html#doctors-section" class="mobile-menu__link">Врачи</a>
+    <a href="index.html#about" class="mobile-menu__link">О нас</a>
+    <a href="#footer" class="mobile-menu__link">Контакты</a>
+    <div id="mobileAuth"></div>
+  </nav>
+
+  <main class="main">
+    <section class="hero" id="hero">
+      <div class="hero__overlay"></div>
+      <div class="hero__content">
+        <h1 class="hero__title">VetCare</h1>
+        <p class="hero__subtitle">Забота, которой можно доверять</p>
+        <a href="#doctors-section" class="btn btn-primary hero__btn">Записаться</a>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about__inner">
+        <div class="about__image">
+          <img src="images/mini-photo-opisanie.webp" alt="Интерьер клиники" />
+        </div>
+        <div class="about__text">
+          <h2>О клинике</h2>
+          <p>Мы объединили глубокую экспертизу и душевное отношение, чтобы ваш питомец получил лучшее. Современное оборудование, опытные врачи и прозрачные стандарты заботы – вот что делает VetCare надёжным партнёром для вашей семьи.</p>
+          <ul class="about__benefits">
+            <li>Круглосуточная запись</li>
+            <li>Собственная лаборатория</li>
+            <li>Безопасные протоколы лечения</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="search-bar">
+        <input type="text" class="search-bar__input" placeholder="Поиск врача или процедуры...">
+        <span class="search-bar__icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+          </svg>
+        </span>
+      </div>
+
+      <div class="doctors__sort">
+        <span class="sort-label">Сортировка:</span>
+        <button class="sort-btn active" data-sort="rating">По рейтингу</button>
+        <button class="sort-btn" data-sort="experience">По стажу</button>
+        <button class="sort-btn" data-sort="alphabet">По алфавиту</button>
+      </div>
+    </div>
+
+<div class="container">
+  <div class="mobile-filters">
+    <select id="mobileAnimalFilter" class="mobile-filter-select">
+      <option value="all">Все животные</option>
+      <option value="dogs">Собаки</option>
+      <option value="cats">Кошки</option>
+      <option value="rodents">Грызуны</option>
+      <option value="birds">Птицы</option>
+      <option value="reptiles">Рептилии</option>
+    </select>
+    <select id="mobileProcedureFilter" class="mobile-filter-select">
+      <option value="all">Все процедуры</option>
+      <option value="vaccination">Вакцинация</option>
+      <option value="surgery">Хирургия</option>
+      <option value="sterilization">Стерилизация</option>
+      <option value="therapy">Терапия</option>
+      <option value="diagnostics">Диагностика</option>
+      <option value="grooming">Груминг</option>
+    </select>
+  </div>
+</div>
+
+    <div class="container main-layout" id="doctors-section">
+      <section class="doctors">
+        <div class="doctors__grid" id="doctorsGrid">
+          <div class="doctor-card" data-id="1" data-name="Анна Смирнова" data-rating="4.9" data-experience="12" data-animals="dogs,cats,rodents" data-procs="therapy,diagnostics,grooming">
+            <a href="doctor.html?id=1" class="doctor-card__link">
+              <div class="doctor-card__photo">
+                <img src="images/doctor1.png" alt="Анна Смирнова" class="doctor-card__img" />
+              </div>
+              <div class="doctor-card__info">
+                <h3 class="doctor-card__name">Анна Смирнова</h3>
+                <p class="doctor-card__spec">Терапевт, стоматолог</p>
+              </div>
+            </a>
+            <button class="btn btn-primary doctor-card__btn" onclick="location.href='doctor.html?id=1'">Записаться</button>
+          </div>
+          <div class="doctor-card" data-id="2" data-name="Игорь Петров" data-rating="4.7" data-experience="8" data-animals="dogs,cats" data-procs="surgery,sterilization,diagnostics">
+            <a href="doctor.html?id=2" class="doctor-card__link">
+              <div class="doctor-card__photo">
+                <img src="images/doctor2.png" alt="Игорь Петров" class="doctor-card__img" />
+              </div>
+              <div class="doctor-card__info">
+                <h3 class="doctor-card__name">Игорь Петров</h3>
+                <p class="doctor-card__spec">Хирург, ортопед</p>
+              </div>
+            </a>
+            <button class="btn btn-primary doctor-card__btn" onclick="location.href='doctor.html?id=2'">Записаться</button>
+          </div>
+          <div class="doctor-card" data-id="3" data-name="Мария Ивлева" data-rating="4.8" data-experience="15" data-animals="dogs,cats,birds,reptiles" data-procs="vaccination,therapy">
+            <a href="doctor.html?id=3" class="doctor-card__link">
+              <div class="doctor-card__photo">
+                <img src="images/doctor1.png" alt="Мария Ивлева" class="doctor-card__img" />
+              </div>
+              <div class="doctor-card__info">
+                <h3 class="doctor-card__name">Мария Ивлева</h3>
+                <p class="doctor-card__spec">Вакцинолог, инфекционист</p>
+              </div>
+            </a>
+            <button class="btn btn-primary doctor-card__btn" onclick="location.href='doctor.html?id=3'">Записаться</button>
+          </div>
+          <div class="doctor-card" data-id="4" data-name="Дмитрий Лукин" data-rating="4.6" data-experience="6" data-animals="dogs,cats,rodents" data-procs="grooming,therapy">
+            <a href="doctor.html?id=4" class="doctor-card__link">
+              <div class="doctor-card__photo">
+                <img src="images/doctor3.png" alt="Дмитрий Лукин" class="doctor-card__img" />
+              </div>
+              <div class="doctor-card__info">
+                <h3 class="doctor-card__name">Дмитрий Лукин</h3>
+                <p class="doctor-card__spec">Грумер, дерматолог</p>
+              </div>
+            </a>
+            <button class="btn btn-primary doctor-card__btn" onclick="location.href='doctor.html?id=4'">Записаться</button>
+          </div>
+          <div class="doctor-card" data-id="5" data-name="Елена Кротова" data-rating="4.9" data-experience="20" data-animals="dogs,cats,birds" data-procs="surgery,diagnostics">
+            <a href="doctor.html?id=5" class="doctor-card__link">
+              <div class="doctor-card__photo">
+                <img src="images/doctor1.png" alt="Елена Кротова" class="doctor-card__img" />
+              </div>
+              <div class="doctor-card__info">
+                <h3 class="doctor-card__name">Елена Кротова</h3>
+                <p class="doctor-card__spec">Хирург-онколог</p>
+              </div>
+            </a>
+            <button class="btn btn-primary doctor-card__btn" onclick="location.href='doctor.html?id=5'">Записаться</button>
+          </div>
+          <div class="doctor-card" data-id="6" data-name="Олег Зайцев" data-rating="4.8" data-experience="10" data-animals="rodents,birds,reptiles" data-procs="therapy,diagnostics,vaccination">
+            <a href="doctor.html?id=6" class="doctor-card__link">
+              <div class="doctor-card__photo">
+                <img src="images/doctor2.png" alt="Олег Зайцев" class="doctor-card__img" />
+              </div>
+              <div class="doctor-card__info">
+                <h3 class="doctor-card__name">Олег Зайцев</h3>
+                <p class="doctor-card__spec">Экзотолог</p>
+              </div>
+            </a>
+            <button class="btn btn-primary doctor-card__btn" onclick="location.href='doctor.html?id=6'">Записаться</button>
+          </div>
+        </div>
+      </section>
+
+      <aside class="filters">
+        <div class="filters__group">
+          <h3 class="filters__title">Животные</h3>
+          <label class="checkbox"><input type="checkbox" value="dogs" class="filter-check" data-group="animals"> Собаки</label>
+          <label class="checkbox"><input type="checkbox" value="cats" class="filter-check" data-group="animals"> Кошки</label>
+          <label class="checkbox"><input type="checkbox" value="rodents" class="filter-check" data-group="animals"> Грызуны</label>
+          <label class="checkbox"><input type="checkbox" value="birds" class="filter-check" data-group="animals"> Птицы</label>
+          <label class="checkbox"><input type="checkbox" value="reptiles" class="filter-check" data-group="animals"> Рептилии</label>
+        </div>
+        <div class="filters__group">
+          <h3 class="filters__title">Процедуры</h3>
+          <label class="checkbox"><input type="checkbox" value="vaccination" class="filter-check" data-group="procedures"> Вакцинация</label>
+          <label class="checkbox"><input type="checkbox" value="surgery" class="filter-check" data-group="procedures"> Хирургия</label>
+          <label class="checkbox"><input type="checkbox" value="sterilization" class="filter-check" data-group="procedures"> Стерилизация</label>
+          <label class="checkbox"><input type="checkbox" value="therapy" class="filter-check" data-group="procedures"> Терапия</label>
+          <label class="checkbox"><input type="checkbox" value="diagnostics" class="filter-check" data-group="procedures"> Диагностика</label>
+          <label class="checkbox"><input type="checkbox" value="grooming" class="filter-check" data-group="procedures"> Груминг</label>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+<footer class="footer" id="footer">
+  <div class="container footer__inner">
+    <ul class="footer__nav">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="index.html#doctors-section">Врачи</a></li>
+      <li><a href="index.html#about">О нас</a></li>
+      <li><a href="auth.html">Вход</a></li>
+    </ul>
+    <div class="footer__contacts">
+      <p>Телефон: <a href="tel:+71234567890" class="footer__link">+7 (123) 456-78-90</a></p>
+      <p>Адрес: г. Абакан, ул. Пушкина</p>
+    </div>
+    <div class="social">
+      <a href="#" class="social__link" aria-label="Telegram">
+        <img src="images/telegram.svg" alt="Telegram" width="20" height="20" />
+      </a>
+      <a href="#" class="social__link" aria-label="VK">
+        <img src="images/vk.svg" alt="VK" width="20" height="20" />
+      </a>
+    </div>
+  </div>
+</footer>
+
+  <script src="script.js"></script>
+ <script>
+  document.querySelector('.hero__btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+  });
+
+  (function() {
+    const grid = document.getElementById('doctorsGrid');
+    const cards = Array.from(grid.querySelectorAll('.doctor-card'));
+    const filterChecks = document.querySelectorAll('.filter-check');
+    const sortButtons = document.querySelectorAll('.sort-btn');
+    const searchInput = document.querySelector('.search-bar__input');
+    let currentSort = 'rating';
+
+    function updateDisplay() {
+      const activeAnimals = [...document.querySelectorAll('.filter-check[data-group="animals"]:checked')].map(cb => cb.value);
+      const activeProcs = [...document.querySelectorAll('.filter-check[data-group="procedures"]:checked')].map(cb => cb.value);
+      const searchTerm = searchInput.value.trim().toLowerCase();
+
+      cards.forEach(card => {
+        const animals = card.dataset.animals.split(',');
+        const procs = card.dataset.procs.split(',');
+        const animalMatch = activeAnimals.length === 0 || activeAnimals.some(a => animals.includes(a));
+        const procMatch = activeProcs.length === 0 || activeProcs.some(p => procs.includes(p));
+        const searchMatch = !searchTerm || card.dataset.name.toLowerCase().includes(searchTerm) || procs.some(p => p.toLowerCase().includes(searchTerm));
+        card.style.display = (animalMatch && procMatch && searchMatch) ? '' : 'none';
+      });
+
+      const sorted = [...cards].sort((a, b) => {
+        if (currentSort === 'rating') return parseFloat(b.dataset.rating) - parseFloat(a.dataset.rating);
+        if (currentSort === 'experience') return parseInt(b.dataset.experience) - parseInt(a.dataset.experience);
+        if (currentSort === 'alphabet') return a.dataset.name.localeCompare(b.dataset.name);
+        return 0;
+      });
+
+      grid.innerHTML = '';
+      sorted.forEach(card => grid.appendChild(card));
+    }
+
+    filterChecks.forEach(cb => cb.addEventListener('change', updateDisplay));
+
+    sortButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        sortButtons.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentSort = this.dataset.sort;
+        updateDisplay();
+      });
+    });
+
+    searchInput.addEventListener('input', updateDisplay);
+
+    const mobileAnimal = document.getElementById('mobileAnimalFilter');
+    const mobileProcedure = document.getElementById('mobileProcedureFilter');
+
+    if (mobileAnimal && mobileProcedure) {
+      mobileAnimal.addEventListener('change', function() {
+        const value = this.value;
+        document.querySelectorAll('.filter-check[data-group="animals"]').forEach(cb => cb.checked = false);
+        if (value !== 'all') {
+          const targetCheckbox = document.querySelector(`.filter-check[data-group="animals"][value="${value}"]`);
+          if (targetCheckbox) targetCheckbox.checked = true;
+        }
+        updateDisplay();
+      });
+
+      mobileProcedure.addEventListener('change', function() {
+        const value = this.value;
+        document.querySelectorAll('.filter-check[data-group="procedures"]').forEach(cb => cb.checked = false);
+        if (value !== 'all') {
+          const targetCheckbox = document.querySelector(`.filter-check[data-group="procedures"][value="${value}"]`);
+          if (targetCheckbox) targetCheckbox.checked = true;
+        }
+        updateDisplay();
+      });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    cards.forEach(card => {
+      card.style.opacity = 0;
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      observer.observe(card);
+    });
+
+    updateDisplay();
+  })();
+</script>
+</body>
+</html>

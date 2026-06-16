@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вход / Регистрация — VetCare</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo" aria-label="На главную">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <rect width="36" height="36" rx="8" fill="#86B7A1" />
+          <path d="M8 20 L18 8 L28 20" stroke="#EFF2F5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="18" cy="13" r="3" fill="#EFF2F5" />
+        </svg>
+        <span class="logo__text">VetCare</span>
+      </a>
+      <nav class="header__nav">
+        <ul class="header__nav-list">
+          <li><a href="index.html" class="header__nav-link">Главная</a></li>
+          <li><a href="index.html#doctors-section" class="header__nav-link">Врачи</a></li>
+          <li><a href="index.html#about" class="header__nav-link">О нас</a></li>
+          <li><a href="#footer" class="header__nav-link">Контакты</a></li>
+        </ul>
+      </nav>
+      <!-- Кнопки авторизации не выводим (пользователь уже на странице входа) -->
+      <button class="burger" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <div class="mobile-overlay"></div>
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="index.html" class="mobile-menu__link">Главная</a>
+    <a href="index.html#doctors-section" class="mobile-menu__link">Врачи</a>
+    <a href="index.html#about" class="mobile-menu__link">О нас</a>
+    <a href="#footer" class="mobile-menu__link">Контакты</a>
+    <div id="mobileAuth"></div>
+  </nav>
+
+  <main class="main">
+    <div style="display: flex; justify-content: center; align-items: center; min-height: calc(100vh - 140px); padding: 20px;">
+      <div class="auth-container">
+        <div class="tab-switcher">
+          <button class="tab-btn active" data-tab="login">Вход</button>
+          <button class="tab-btn" data-tab="register">Регистрация</button>
+        </div>
+
+        <form class="auth-form active" id="loginForm" novalidate>
+          <div class="form-group">
+            <input type="text" class="form-input" id="loginEmailPhone" placeholder="Email или телефон" autocomplete="email" required>
+            <span class="form-error" id="loginEmailPhoneError"></span>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-input" id="loginPassword" placeholder="Пароль" autocomplete="current-password" required>
+            <span class="form-error" id="loginPasswordError"></span>
+          </div>
+          <button type="submit" class="btn btn-primary auth-submit">Войти</button>
+          <p class="auth-switch-text">Нет аккаунта? <button type="button" class="link-btn" data-tab="register">Зарегистрироваться</button></p>
+        </form>
+
+        <form class="auth-form" id="registerForm" novalidate>
+          <div class="form-group">
+            <input type="text" class="form-input" id="regName" placeholder="Имя" required>
+            <span class="form-error" id="regNameError"></span>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-input" id="regEmailPhone" placeholder="Email или телефон" autocomplete="email" required>
+            <span class="form-error" id="regEmailPhoneError"></span>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-input" id="regPassword" placeholder="Пароль" required>
+            <span class="form-error" id="regPasswordError"></span>
+          </div>
+          <button type="submit" class="btn btn-primary auth-submit">Зарегистрироваться</button>
+          <p class="auth-switch-text">Уже есть аккаунт? <button type="button" class="link-btn" data-tab="login">Войти</button></p>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer" id="footer">
+    <div class="container footer__inner">
+      <ul class="footer__nav">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="index.html#doctors-section">Врачи</a></li>
+        <li><a href="index.html#about">О нас</a></li>
+        <li><a href="auth.html">Вход</a></li>
+      </ul>
+      <div class="footer__contacts">
+        <p>Телефон: <a href="tel:+71234567890" class="footer__link">+7 (123) 456-78-90</a></p>
+        <p>Адрес: г. Абакан, ул. Пушкина</p>
+      </div>
+      <div class="social">
+        <a href="#" class="social__link" aria-label="Telegram">
+          <img src="images/telegram.svg" alt="Telegram" width="20" height="20" />
+        </a>
+        <a href="#" class="social__link" aria-label="VK">
+          <img src="images/vk.svg" alt="VK" width="20" height="20" />
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <script>
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const forms = document.querySelectorAll('.auth-form');
+    const linkBtns = document.querySelectorAll('.link-btn[data-tab]');
+
+    function switchTab(tabName) {
+      tabBtns.forEach(b => b.classList.toggle('active', b.dataset.tab === tabName));
+      forms.forEach(f => f.classList.toggle('active', f.id === (tabName === 'login' ? 'loginForm' : 'registerForm')));
+    }
+    tabBtns.forEach(btn => btn.addEventListener('click', () => switchTab(btn.dataset.tab)));
+    linkBtns.forEach(btn => btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchTab(btn.dataset.tab);
+    }));
+
+    function showError(input, errorSpan, message) {
+      input.classList.add('invalid');
+      errorSpan.textContent = message;
+      errorSpan.classList.add('visible');
+    }
+    function clearError(input, errorSpan) {
+      input.classList.remove('invalid');
+      errorSpan.textContent = '';
+      errorSpan.classList.remove('visible');
+    }
+
+    function validateEmailOrPhone(value) {
+      if (!value.trim()) return 'Поле обязательно';
+      const trimmed = value.trim();
+      if (trimmed.includes('@')) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(trimmed) ? null : 'Введите корректный email';
+      }
+      const digits = trimmed.replace(/\D/g, '');
+      return digits.length >= 10 ? null : 'Телефон должен содержать минимум 10 цифр';
+    }
+
+    function validatePassword(value) {
+      if (!value) return 'Пароль обязателен';
+      return value.length >= 6 ? null : 'Пароль должен содержать минимум 6 символов';
+    }
+
+    function validateName(value) {
+      if (!value.trim()) return 'Имя обязательно';
+      return value.trim().length >= 2 ? null : 'Имя должно содержать минимум 2 символа';
+    }
+
+    function attachRealTimeValidation(input, errorSpan, validator) {
+      input.addEventListener('input', () => {
+        const error = validator(input.value);
+        if (error) {
+          showError(input, errorSpan, error);
+        } else {
+          clearError(input, errorSpan);
+        }
+      });
+      input.addEventListener('blur', () => {
+        const error = validator(input.value);
+        if (error) {
+          showError(input, errorSpan, error);
+        } else {
+          clearError(input, errorSpan);
+        }
+      });
+    }
+
+    const loginEmailPhone = document.getElementById('loginEmailPhone');
+    const loginEmailPhoneError = document.getElementById('loginEmailPhoneError');
+    const loginPassword = document.getElementById('loginPassword');
+    const loginPasswordError = document.getElementById('loginPasswordError');
+
+    attachRealTimeValidation(loginEmailPhone, loginEmailPhoneError, validateEmailOrPhone);
+    attachRealTimeValidation(loginPassword, loginPasswordError, validatePassword);
+
+    const regName = document.getElementById('regName');
+    const regNameError = document.getElementById('regNameError');
+    const regEmailPhone = document.getElementById('regEmailPhone');
+    const regEmailPhoneError = document.getElementById('regEmailPhoneError');
+    const regPassword = document.getElementById('regPassword');
+    const regPasswordError = document.getElementById('regPasswordError');
+
+    attachRealTimeValidation(regName, regNameError, validateName);
+    attachRealTimeValidation(regEmailPhone, regEmailPhoneError, validateEmailOrPhone);
+    attachRealTimeValidation(regPassword, regPasswordError, validatePassword);
+
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      let valid = true;
+      const emailErr = validateEmailOrPhone(loginEmailPhone.value);
+      const passErr = validatePassword(loginPassword.value);
+      if (emailErr) { showError(loginEmailPhone, loginEmailPhoneError, emailErr); valid = false; }
+      if (passErr) { showError(loginPassword, loginPasswordError, passErr); valid = false; }
+      if (valid) {
+        localStorage.setItem('loggedIn', 'true');
+        window.location.href = 'account.html';
+      }
+    });
+
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      let valid = true;
+      const nameErr = validateName(regName.value);
+      const emailErr = validateEmailOrPhone(regEmailPhone.value);
+      const passErr = validatePassword(regPassword.value);
+      if (nameErr) { showError(regName, regNameError, nameErr); valid = false; }
+      if (emailErr) { showError(regEmailPhone, regEmailPhoneError, emailErr); valid = false; }
+      if (passErr) { showError(regPassword, regPasswordError, passErr); valid = false; }
+      if (valid) {
+        localStorage.setItem('loggedIn', 'true');
+        window.location.href = 'account.html';
+      }
+    });
+  </script>
+</body>
+</html>

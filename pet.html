@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Питомец — VetCare</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo" aria-label="На главную">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <rect width="36" height="36" rx="8" fill="#86B7A1" />
+          <path d="M8 20 L18 8 L28 20" stroke="#EFF2F5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="18" cy="13" r="3" fill="#EFF2F5" />
+        </svg>
+        <span class="logo__text">VetCare</span>
+      </a>
+      <nav class="header__nav">
+        <ul class="header__nav-list">
+          <li><a href="index.html" class="header__nav-link">Главная</a></li>
+          <li><a href="index.html#doctors-section" class="header__nav-link">Врачи</a></li>
+          <li><a href="index.html#about" class="header__nav-link">О нас</a></li>
+          <li><a href="#footer" class="header__nav-link">Контакты</a></li>
+        </ul>
+      </nav>
+      <div class="header__actions" id="headerActions"></div>
+      <button class="burger" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <div class="mobile-overlay"></div>
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="index.html" class="mobile-menu__link">Главная</a>
+    <a href="index.html#doctors-section" class="mobile-menu__link">Врачи</a>
+    <a href="index.html#about" class="mobile-menu__link">О нас</a>
+    <a href="#footer" class="mobile-menu__link">Контакты</a>
+    <div id="mobileAuth"></div>
+  </nav>
+
+  <main class="main">
+    <div class="container" id="petContainer">
+    </div>
+  </main>
+
+  <footer class="footer" id="footer">
+    <div class="container footer__inner">
+      <ul class="footer__nav">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="index.html#doctors-section">Врачи</a></li>
+        <li><a href="index.html#about">О нас</a></li>
+        <li><a href="auth.html">Вход</a></li>
+      </ul>
+      <div class="footer__contacts">
+        <p>Телефон: <a href="tel:+71234567890" class="footer__link">+7 (123) 456-78-90</a></p>
+        <p>Адрес: г. Абакан, ул. Пушкина</p>
+      </div>
+      <div class="social">
+        <a href="#" class="social__link" aria-label="Telegram">
+          <img src="images/telegram.svg" alt="Telegram" width="20" height="20" />
+        </a>
+        <a href="#" class="social__link" aria-label="VK">
+          <img src="images/vk.svg" alt="VK" width="20" height="20" />
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    const pets = {
+      1: {
+        name: "Барсик",
+        species: "Кошка",
+        breed: "Британская",
+        age: "3 года",
+        events: {
+          "2026-06-03": { type: "future", label: "Плановая вакцинация", doctor: "Анна Смирнова" },
+          "2026-05-12": { type: "past", label: "Осмотр у терапевта", doctor: "Игорь Петров" },
+          "2026-04-20": { type: "past", label: "Груминг", doctor: "Дмитрий Лукин" }
+        }
+      },
+      2: {
+        name: "Рекс",
+        species: "Собака",
+        breed: "Немецкая овчарка",
+        age: "5 лет",
+        events: {
+          "2026-06-08": { type: "future", label: "Вакцинация от бешенства", doctor: "Мария Ивлева" },
+          "2026-05-01": { type: "past", label: "Хирургическая операция", doctor: "Игорь Петров" },
+          "2026-03-10": { type: "past", label: "Диагностика", doctor: "Елена Кротова" }
+        }
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const petId = params.get('id') || '1';
+    const pet = pets[petId] || pets[1];
+
+    const container = document.getElementById('petContainer');
+
+    container.innerHTML = `
+      <div class="pet-page">
+        <h1 class="pet-page__name">${pet.name}</h1>
+        <p class="pet-page__details">${pet.species}, ${pet.breed}, ${pet.age}</p>
+        <div class="pet-layout">
+          <div class="pet-calendar" id="calendar"></div>
+          <div class="event-details-panel" id="eventDetailsPanel">
+            <div class="event-details-panel__header">
+              <h3 class="event-details-panel__date"></h3>
+              <button class="event-details-panel__close" id="closePanelBtn">&times;</button>
+            </div>
+            <p class="event-details-panel__label"></p>
+            <p class="event-details-panel__doctor"></p>
+          </div>
+        </div>
+      </div>
+    `;
+
+    const calendarEl = document.getElementById('calendar');
+    const panel = document.getElementById('eventDetailsPanel');
+    const panelDate = panel.querySelector('.event-details-panel__date');
+    const panelLabel = panel.querySelector('.event-details-panel__label');
+    const panelDoctor = panel.querySelector('.event-details-panel__doctor');
+    const closePanelBtn = document.getElementById('closePanelBtn');
+
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth(); // 0-11
+    const monthNames = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+                        "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const firstDay = new Date(year, month, 1).getDay(); // 0 вс
+    const startDay = (firstDay + 6) % 7; // пн = 0
+
+    let calendarHTML = `<h3 class="calendar-title">${monthNames[month]} ${year}</h3>`;
+    calendarHTML += '<div class="calendar-grid">';
+    ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"].forEach(d => {
+      calendarHTML += `<div class="calendar-header">${d}</div>`;
+    });
+
+    for (let i = 0; i < startDay; i++) {
+      calendarHTML += '<div class="calendar-day empty"></div>';
+    }
+
+    const todayStr = now.toISOString().slice(0, 10);
+    for (let day = 1; day <= daysInMonth; day++) {
+      const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+      const isToday = dateStr === todayStr;
+      const event = pet.events[dateStr];
+      let dotHTML = '';
+      if (event) {
+        const dotClass = event.type === 'future' ? 'dot-future' : 'dot-past';
+        dotHTML = `<span class="calendar-dot ${dotClass}" title="${event.label}"></span>`;
+      }
+      calendarHTML += `
+        <div class="calendar-day${isToday ? ' today' : ''}${event ? ' has-event' : ''}" data-date="${dateStr}">
+          <span class="day-number">${day}</span>
+          ${dotHTML}
+        </div>
+      `;
+    }
+
+    calendarHTML += '</div>';
+    calendarEl.innerHTML = calendarHTML;
+
+    function showEventDetails(dateStr, event) {
+      const [y, m, d] = dateStr.split('-');
+      panelDate.textContent = `${d}.${m}.${y}`;
+      panelLabel.textContent = event.label;
+      panelDoctor.textContent = `Врач: ${event.doctor}`;
+      panel.classList.add('active');
+    }
+
+    function hideEventDetails() {
+      panel.classList.remove('active');
+    }
+
+    const dayElements = calendarEl.querySelectorAll('.calendar-day.has-event');
+    dayElements.forEach(dayEl => {
+      dayEl.addEventListener('click', () => {
+        const dateStr = dayEl.dataset.date;
+        const event = pet.events[dateStr];
+        if (event) {
+          if (panel.classList.contains('active') && panelDate.textContent === `${dateStr.slice(8)}.${dateStr.slice(5,7)}.${dateStr.slice(0,4)}`) {
+            hideEventDetails();
+          } else {
+            showEventDetails(dateStr, event);
+          }
+        }
+      });
+    });
+
+    closePanelBtn.addEventListener('click', hideEventDetails);
+
+    const petPage = container.querySelector('.pet-page');
+    if (petPage) {
+      petPage.style.opacity = 0;
+      petPage.style.transform = 'translateY(20px)';
+      setTimeout(() => {
+        petPage.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        petPage.style.opacity = 1;
+        petPage.style.transform = 'translateY(0)';
+      }, 100);
+    }
+  </script>
+</body>
+</html>

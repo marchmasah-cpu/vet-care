@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Личный кабинет — VetCare</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo" aria-label="На главную">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <rect width="36" height="36" rx="8" fill="#86B7A1" />
+          <path d="M8 20 L18 8 L28 20" stroke="#EFF2F5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="18" cy="13" r="3" fill="#EFF2F5" />
+        </svg>
+        <span class="logo__text">VetCare</span>
+      </a>
+      <nav class="header__nav">
+        <ul class="header__nav-list">
+          <li><a href="index.html" class="header__nav-link">Главная</a></li>
+          <li><a href="index.html#doctors-section" class="header__nav-link">Врачи</a></li>
+          <li><a href="index.html#about" class="header__nav-link">О нас</a></li>
+          <li><a href="#footer" class="header__nav-link">Контакты</a></li>
+        </ul>
+      </nav>
+<button class="theme-switch" id="themeToggle" aria-label="Переключить тему">
+  <span class="theme-switch__track">
+    <span class="theme-switch__icon theme-switch__icon--sun">☀️</span>
+    <span class="theme-switch__icon theme-switch__icon--moon">🌙</span>
+    <span class="theme-switch__thumb"></span>
+  </span>
+</button>
+      <div class="header__actions" id="headerActions"></div>
+      <button class="burger" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <div class="mobile-overlay"></div>
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="index.html" class="mobile-menu__link">Главная</a>
+    <a href="index.html#doctors-section" class="mobile-menu__link">Врачи</a>
+    <a href="index.html#about" class="mobile-menu__link">О нас</a>
+    <a href="#footer" class="mobile-menu__link">Контакты</a>
+    <div id="mobileAuth"></div>
+  </nav>
+
+  <main class="main">
+    <div class="container account-container">
+      <div class="account__left">
+        <div class="account__user-info">
+          <h2 class="account__user-name">Екатерина Иванова</h2>
+          <p class="account__user-phone">+7 (999) 123-45-67</p>
+        </div>
+        <button class="btn btn-outline account__add-pet-btn" id="openAddPetBtn">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="10" y1="1" x2="10" y2="19"/><line x1="1" y1="10" x2="19" y2="10"/>
+          </svg>
+          Добавить питомца
+        </button>
+        <div class="pets-list" id="petsList">
+          <div class="pet-card" data-pet-id="1" onclick="location.href='pet.html?id=1'">
+            <div class="pet-card__silhouette">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#86B7A1" stroke-width="1.5">
+                <path d="M8 32V20C8 12 12 8 20 8C28 8 32 12 32 20V32"/>
+                <circle cx="16" cy="18" r="2" fill="#86B7A1"/><circle cx="24" cy="18" r="2" fill="#86B7A1"/>
+                <path d="M16 26C16 26 18 28 20 28C22 28 24 26 24 26" stroke="#86B7A1" stroke-width="1.5" fill="none"/>
+              </svg>
+            </div>
+            <div class="pet-card__info">
+              <h3 class="pet-card__name">Барсик</h3>
+              <p class="pet-card__details">Кошка, Британская</p>
+            </div>
+          </div>
+          <div class="pet-card" data-pet-id="2" onclick="location.href='pet.html?id=2'">
+            <div class="pet-card__silhouette">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#86B7A1" stroke-width="1.5">
+                <path d="M8 32V20C8 12 12 8 20 8C28 8 32 12 32 20V32"/>
+                <circle cx="16" cy="18" r="2" fill="#86B7A1"/><circle cx="24" cy="18" r="2" fill="#86B7A1"/>
+                <path d="M16 26C16 26 18 28 20 28C22 28 24 26 24 26" stroke="#86B7A1" stroke-width="1.5" fill="none"/>
+              </svg>
+            </div>
+            <div class="pet-card__info">
+              <h3 class="pet-card__name">Рекс</h3>
+              <p class="pet-card__details">Собака, Немецкая овчарка</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="account__right">
+        <h2 class="account__history-title">История записей</h2>
+        <div class="history-list" id="historyList">
+          <div class="history-item history-item--future">
+            <span class="history-item__date">20 июня 2026, 14:00</span>
+            <span class="history-item__info">Анна Смирнова — Терапия</span>
+          </div>
+          <div class="history-item history-item--future">
+            <span class="history-item__date">12 мая 2026, 10:00</span>
+            <span class="history-item__info">Игорь Петров — Хирургия</span>
+          </div>
+          <div class="history-item">
+            <span class="history-item__date">5 мая 2026, 15:30</span>
+            <span class="history-item__info">Мария Ивлева — Вакцинация</span>
+          </div>
+          <div class="history-item history-item--past">
+            <span class="history-item__date">20 апреля 2026, 09:00</span>
+            <span class="history-item__info">Елена Кротова — Диагностика</span>
+          </div>
+          <div class="history-item history-item--past">
+            <span class="history-item__date">10 марта 2026, 11:00</span>
+            <span class="history-item__info">Дмитрий Лукин — Груминг</span>
+          </div>
+          <div class="history-item history-item--past">
+            <span class="history-item__date">2 марта 2026, 16:00</span>
+            <span class="history-item__info">Олег Зайцев — Терапия</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer" id="footer">
+    <div class="container footer__inner">
+      <ul class="footer__nav">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="index.html#doctors-section">Врачи</a></li>
+        <li><a href="index.html#about">О нас</a></li>
+        <li><a href="auth.html">Вход</a></li>
+      </ul>
+      <div class="footer__contacts">
+        <p>Телефон: <a href="tel:+71234567890" class="footer__link">+7 (123) 456-78-90</a></p>
+        <p>Адрес: г. Абакан, ул. Пушкина</p>
+      </div>
+      <div class="social">
+        <a href="#" class="social__link" aria-label="Telegram">
+          <img src="images/telegram.svg" alt="Telegram" width="20" height="20" />
+        </a>
+        <a href="#" class="social__link" aria-label="VK">
+          <img src="images/vk.svg" alt="VK" width="20" height="20" />
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="addPetModal">
+    <div class="modal">
+      <button class="modal__close" id="closeAddPetBtn" aria-label="Закрыть">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <h3 class="modal__title">Добавить питомца</h3>
+      <form id="addPetForm" class="modal__form active" novalidate>
+        <div class="form-group">
+          <input type="text" class="form-input" placeholder="Кличка" required>
+          <span class="form-error"></span>
+        </div>
+        <div class="form-group">
+          <input type="number" class="form-input" placeholder="Возраст (лет)" min="0" max="30" required>
+          <span class="form-error"></span>
+        </div>
+        <div class="form-group">
+          <select class="form-input" id="petSpecies" required>
+            <option value="" disabled selected>Вид животного</option>
+            <option value="cat">Кошка</option>
+            <option value="dog">Собака</option>
+            <option value="rodent">Грызун</option>
+            <option value="bird">Птица</option>
+            <option value="reptile">Рептилия</option>
+          </select>
+          <span class="form-error"></span>
+        </div>
+        <div class="form-group">
+          <select class="form-input" id="petBreed" required>
+            <option value="" disabled selected>Порода</option>
+          </select>
+          <span class="form-error"></span>
+        </div>
+        <div class="form-group">
+          <select class="form-input" id="petGender" required>
+            <option value="" disabled selected>Пол</option>
+            <option value="male">Самец</option>
+            <option value="female">Самка</option>
+            <option value="unknown">Неизвестно</option>
+          </select>
+          <span class="form-error"></span>
+        </div>
+        <button type="submit" class="btn btn-primary modal__submit">Добавить</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const authActions = document.getElementById('headerActions');
+      if (authActions && localStorage.getItem('loggedIn') === 'true') {
+        authActions.innerHTML = `
+          <a href="#" class="btn btn-outline header__settings-btn">Настройки аккаунта</a>
+          <a href="#" class="btn btn-outline header__logout-btn" id="logoutBtn">Выйти</a>
+        `;
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+          logoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('loggedIn');
+            window.location.href = 'index.html';
+          });
+        }
+      }
+    });
+
+    const modal = document.getElementById('addPetModal');
+    const openBtn = document.getElementById('openAddPetBtn');
+    const closeBtn = document.getElementById('closeAddPetBtn');
+    openBtn.addEventListener('click', () => modal.classList.add('active'));
+    closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+    modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
+
+    const breeds = {
+      cat: ['Британская', 'Персидская', 'Сиамская', 'Мейн-кун', 'Другая'],
+      dog: ['Немецкая овчарка', 'Лабрадор', 'Йоркширский терьер', 'Бигль', 'Другая'],
+      rodent: ['Хомяк', 'Морская свинка', 'Кролик', 'Шиншилла', 'Другая'],
+      bird: ['Волнистый попугай', 'Корелла', 'Жако', 'Канарейка', 'Другая'],
+      reptile: ['Черепаха', 'Ящерица', 'Змея', 'Хамелеон', 'Другая']
+    };
+    const speciesSelect = document.getElementById('petSpecies');
+    const breedSelect = document.getElementById('petBreed');
+    speciesSelect.addEventListener('change', function() {
+      const species = this.value;
+      breedSelect.innerHTML = '<option value="" disabled selected>Порода</option>';
+      if (breeds[species]) {
+        breeds[species].forEach(breed => {
+          const opt = document.createElement('option');
+          opt.value = breed.toLowerCase().replace(/\s/g, '-');
+          opt.textContent = breed;
+          breedSelect.appendChild(opt);
+        });
+      }
+    });
+
+    const petsList = document.getElementById('petsList');
+    const addPetForm = document.getElementById('addPetForm');
+    addPetForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const nameInput = this.querySelector('[placeholder="Кличка"]');
+      const name = nameInput.value;
+      const species = speciesSelect.options[speciesSelect.selectedIndex].text;
+      const breed = breedSelect.options[breedSelect.selectedIndex].text;
+      const newCard = document.createElement('div');
+      newCard.className = 'pet-card pet-card--new';
+      newCard.setAttribute('data-pet-id', Date.now());
+      newCard.innerHTML = `
+        <div class="pet-card__silhouette">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#86B7A1" stroke-width="1.5">
+            <path d="M8 32V20C8 12 12 8 20 8C28 8 32 12 32 20V32"/>
+            <circle cx="16" cy="18" r="2" fill="#86B7A1"/><circle cx="24" cy="18" r="2" fill="#86B7A1"/>
+            <path d="M16 26C16 26 18 28 20 28C22 28 24 26 24 26" stroke="#86B7A1" stroke-width="1.5" fill="none"/>
+          </svg>
+        </div>
+        <div class="pet-card__info">
+          <h3 class="pet-card__name">${name}</h3>
+          <p class="pet-card__details">${species}, ${breed}</p>
+        </div>
+      `;
+      newCard.addEventListener('click', () => {
+        location.href = `pet.html?id=${newCard.dataset.petId}`;
+      });
+      petsList.appendChild(newCard);
+      requestAnimationFrame(() => {
+        newCard.classList.add('pet-card--visible');
+      });
+      modal.classList.remove('active');
+      this.reset();
+    });
+
+    const historyItems = document.querySelectorAll('.history-item');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('history-item--visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    historyItems.forEach(item => {
+      const rect = item.getBoundingClientRect();
+      const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+      if (isVisible) {
+        item.classList.add('history-item--visible');
+      } else {
+        observer.observe(item);
+      }
+    });
+
+    document.querySelectorAll('.pet-card').forEach(pet => {
+      pet.style.opacity = 0;
+      pet.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        pet.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        pet.style.opacity = 1;
+        pet.style.transform = 'scale(1)';
+      }, 100);
+    });
+  </script>
+</body>
+</html>
