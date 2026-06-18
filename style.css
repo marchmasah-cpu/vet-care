@@ -30,8 +30,7 @@ body.dark-theme {
   --white: #252a30;
   --shadow-sm: 0 8px 20px rgba(0,0,0,0.3);
   --shadow-hover: 0 12px 28px rgba(0,0,0,0.4);
-}
-body.dark-theme .form-input {
+  body.dark-theme .form-input {
   color: var(--text-primary);
   border-bottom-color: var(--border-light);
   background: transparent;
@@ -60,6 +59,8 @@ body.dark-theme .event-details-panel__label {
 body.dark-theme .event-details-panel__doctor {
   color: var(--accent);
 }
+}
+
 
 * {
   margin: 0;
