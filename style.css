@@ -1415,3 +1415,28 @@ body.dark-theme .pet-card__details {
   }
 }
 
+body.dark-theme .event-details-panel,
+body.dark-theme .event-details-panel.active {
+  background-color: #252a30 !important; 
+  color: #e0e5ea !important;
+  border-left: 4px solid #86b7a1 !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3) !important;
+}
+
+body.dark-theme .event-details-panel__header,
+body.dark-theme .event-details-panel__date,
+body.dark-theme .event-details-panel__label {
+  color: #e0e5ea !important;
+}
+
+body.dark-theme .event-details-panel__doctor {
+  color: #86b7a1 !important;
+}
+
+body.dark-theme .event-details-panel__close {
+  color: #a0a8b0 !important;
+}
+
+body.dark-theme .event-details-panel__close:hover {
+  color: #ffffff !important;
+}
