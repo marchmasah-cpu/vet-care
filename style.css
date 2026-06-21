@@ -1440,3 +1440,61 @@ body.dark-theme .event-details-panel__close {
 body.dark-theme .event-details-panel__close:hover {
   color: #ffffff !important;
 }
+
+/* Переключатель темы */
+.theme-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  margin-left: auto; /* прижмёт к правому краю */
+  z-index: 2;
+}
+.theme-switch__track {
+  width: 48px;
+  height: 26px;
+  background: var(--border-light);
+  border-radius: 13px;
+  position: relative;
+  transition: background 0.3s ease;
+  display: flex;
+  align-items: center;
+  padding: 3px;
+}
+.theme-switch__thumb {
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  left: 3px;
+  transition: transform 0.3s ease, background 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.theme-switch__icon {
+  font-size: 14px;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 0;
+}
+.theme-switch__icon--sun {
+  left: 6px;
+  color: #f1c40f;
+}
+.theme-switch__icon--moon {
+  right: 6px;
+  color: #f1c40f;
+}
+/* Тёмная тема: перемещаем ползунок */
+body.dark-theme .theme-switch__track {
+  background: var(--accent);
+}
+body.dark-theme .theme-switch__thumb {
+  transform: translateX(22px);
+}
