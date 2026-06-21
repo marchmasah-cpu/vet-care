@@ -1441,7 +1441,6 @@ body.dark-theme .event-details-panel__close:hover {
   color: #ffffff !important;
 }
 
-/* Переключатель темы */
 .theme-switch {
   position: relative;
   display: inline-flex;
@@ -1450,7 +1449,7 @@ body.dark-theme .event-details-panel__close:hover {
   border: none;
   cursor: pointer;
   padding: 4px;
-  margin-left: auto; /* прижмёт к правому краю */
+  margin-left: auto; 
   z-index: 2;
 }
 .theme-switch__track {
@@ -1491,7 +1490,6 @@ body.dark-theme .event-details-panel__close:hover {
   right: 6px;
   color: #f1c40f;
 }
-/* Тёмная тема: перемещаем ползунок */
 body.dark-theme .theme-switch__track {
   background: var(--accent);
 }
